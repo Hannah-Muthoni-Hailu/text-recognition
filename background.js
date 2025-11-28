@@ -23,8 +23,28 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
           throw new Error("Upload failed with status " + uploadRes.status);
         }
 
+      // } catch (err) {
+      //   console.error("Upload error:", err);
+      // }
+      // const serverData = await uploadRes.json(); // assuming server returns JSON
+        const serverData = "/response.json"
+
+        // Send server response back to sender (popup or content script)
+        if (sender.tab) {
+          // If message came from a content script
+          chrome.tabs.sendMessage(sender.tab.id, { action: 'upload-complete', serverData });
+        } else {
+          // If message came from popup
+          chrome.runtime.sendMessage({ action: 'upload-complete', serverData });
+        }
+
       } catch (err) {
         console.error("Upload error:", err);
+        if (sender.tab) {
+          chrome.tabs.sendMessage(sender.tab.id, { action: 'upload-error', error: err.message });
+        } else {
+          chrome.runtime.sendMessage({ action: 'upload-error', error: err.message });
+        }
       }
       // Return the captured dataUrl back to the content script
     //   sendResponse({ success: true, dataUrl });

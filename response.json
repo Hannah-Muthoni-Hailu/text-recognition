@@ -1,0 +1,5 @@
+{
+  "success": true,
+  "message": "Image uploaded successfully",
+  "imageUrl": "https://yourserver.com/uploads/abcd1234.png"
+}

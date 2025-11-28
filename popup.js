@@ -17,3 +17,16 @@ document.getElementById('start').addEventListener('click', async () => {
     alert('Could not inject selection script. Try again.');
   }
 });
+
+// Listen for messages from background.js
+chrome.runtime.onMessage.addListener((msg) => {
+  if (msg.action === 'upload-complete') {
+    console.log("Server response:", msg.serverData);
+    document.getElementById("status").textContent = "Upload successful!";
+  }
+
+  if (msg.action === 'upload-error') {
+    console.error("Upload failed:", msg.error);
+    document.getElementById("status").textContent = "Upload failed: " + msg.error;
+  }
+});
