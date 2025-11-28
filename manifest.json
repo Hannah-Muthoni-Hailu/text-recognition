@@ -3,7 +3,13 @@
   "name": "Text Capture",
   "version": "1.0",
   "description": "Select an area and capture a screenshot of it.",
-  "permissions": ["scripting", "tabs", "activeTab", "storage"],
+  "permissions": [
+    "tabs",
+    "activeTab",
+    "scripting",
+    "storage"
+  ],
+  "host_permissions": ["<all_urls>"],
   "background": {
     "service_worker": "background.js"
   },
@@ -16,5 +22,11 @@
     "32": "icons/icon-32.png",
     "48": "icons/icon-48.png",
     "128": "icons/icon-128.png"
-  }
+  },
+  "content_scripts": [
+  {
+    "matches": ["<all_urls>"],
+    "js": ["content.js"],
+    "run_at": "document_idle"
+  } ]
 }
