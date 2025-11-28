@@ -27,7 +27,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         console.error("Upload error:", err);
       }
       // Return the captured dataUrl back to the content script
-      sendResponse({ success: true, dataUrl });
+    //   sendResponse({ success: true, dataUrl });
     });
     // indicate we will respond asynchronously
     return true;
