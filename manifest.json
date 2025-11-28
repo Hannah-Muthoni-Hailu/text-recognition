@@ -1,0 +1,20 @@
+{
+  "manifest_version": 3,
+  "name": "Text Capture",
+  "version": "1.0",
+  "description": "Select an area and capture a screenshot of it.",
+  "permissions": ["scripting", "tabs", "activeTab", "storage"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Area Screenshot"
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "images/icon-32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
